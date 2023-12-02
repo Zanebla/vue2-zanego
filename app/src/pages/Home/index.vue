@@ -19,6 +19,8 @@ import Like from './Like'
 import Floor from './Floor'
 import Brand from './Brand'
 
+import {mapState} from 'vuex'
+
 export default {
   components: {
     ListContainer,
@@ -27,6 +29,12 @@ export default {
     Like,
     Floor,
     Brand
+  },
+  computed:{
+    ...mapState('')
+  },
+  methods:{
+    
   }
 }
 </script>

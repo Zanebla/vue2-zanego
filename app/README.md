@@ -33,6 +33,10 @@ cnpm install --save nprogress
 
 https://github.com/rstacruz/nprogress
 
+cnpm install --save vuex@3
+
+http://lab.aitechlab.cn/
+
 # 基本操作
 
 ## Project setup
