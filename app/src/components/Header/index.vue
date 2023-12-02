@@ -36,6 +36,7 @@
             type="text"
             id="autocomplete"
             class="input-error input-xxlarge"
+            v-model="keyword"
           />
           <button
             class="sui-btn btn-xlarge btn-danger"
@@ -53,9 +54,14 @@
 <script>
 export default {
   name: "",
+  data () {
+    return {
+      keyword: ''
+    }
+  },
   methods: {
     goSearch () {
-      this.$router.push('/search')
+      this.$router.push({ name: "search", params: { keyword: this.keyword }, query: { k: this.keyword.toUpperCase() } })
     }
   }
 }
