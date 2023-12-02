@@ -17,6 +17,8 @@ cnpm install --save less less-loader@5
 
 cnpm install --save vue-router
 
+git config --global url."git@github.com:".insteadOf "https://github.com/"
+
 # 基本操作
 
 ## Project setup
