@@ -19,6 +19,8 @@ cnpm install --save vue-router
 
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 
+配置路由
+
 # 基本操作
 
 ## Project setup

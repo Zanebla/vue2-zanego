@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header msg="Welcome to Your Zanego App" />
+    <router-view></router-view>
     <Footer />
   </div>
 </template>

@@ -6,8 +6,10 @@
         <div class="loginList">
           <p>🛍 Welcome to Zanego!</p>
           <p>
-            <a href="###">Log In</a>
-            <a href="###" class="register">Free Signup</a>
+            <router-link to="/login">Log In</router-link>
+            <router-link class="register" to="/register"
+              >Free Signup</router-link
+            >
           </p>
         </div>
         <div class="typeList">
@@ -24,9 +26,9 @@
     <!--头部第二行 搜索区域-->
     <div class="bottom">
       <h1 class="logoArea">
-        <a class="logo" title="Zanego" href="###" target="_blank">
+        <router-link class="logo" title="Zanego" to="/home">
           <img src="./images/logo.jpg" alt="" />
-        </a>
+        </router-link>
       </h1>
       <div class="searchArea">
         <form action="###" class="searchForm">
@@ -35,7 +37,11 @@
             id="autocomplete"
             class="input-error input-xxlarge"
           />
-          <button class="sui-btn btn-xlarge btn-danger" type="button">
+          <button
+            class="sui-btn btn-xlarge btn-danger"
+            type="button"
+            @click="goSearch"
+          >
             Search
           </button>
         </form>
@@ -46,7 +52,12 @@
 
 <script>
 export default {
-
+  name: "",
+  methods: {
+    goSearch () {
+      this.$router.push('/search')
+    }
+  }
 }
 </script>
 

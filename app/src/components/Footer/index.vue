@@ -30,23 +30,21 @@
           </ul>
         </div>
         <div class="footerItem">
-          <h4>售后服务</h4>
+          <h4>After-sale Service</h4>
           <ul class="footerItemCon">
-            <li>售后政策</li>
-            <li>价格保护</li>
-            <li>退款说明</li>
-            <li>返修/退换货</li>
-            <li>取消订单</li>
+            <li>After Sales Policy</li>
+            <li>Price Protection</li>
+            <li>Refund Instructions</li>
+            <li>Cancel Order</li>
           </ul>
         </div>
         <div class="footerItem">
-          <h4>特色服务</h4>
+          <h4>Special Services</h4>
           <ul class="footerItemCon">
-            <li>夺宝岛</li>
-            <li>DIY装机</li>
-            <li>延保服务</li>
-            <li>尚品汇E卡</li>
-            <li>尚品汇通信</li>
+            <li>Happy Dogs</li>
+            <li>Fancy Cats</li>
+            <li>Cute Ducks</li>
+            <li>Funny Monkeys</li>
           </ul>
         </div>
         <div class="footerItem">
@@ -57,42 +55,22 @@
       <div class="copyright">
         <ul class="helpLink">
           <li>
-            关于我们
+            About Us
             <span class="space"></span>
           </li>
           <li>
-            联系我们
+            Contact Us
             <span class="space"></span>
           </li>
           <li>
-            关于我们
+            Merchant Settlement
             <span class="space"></span>
           </li>
           <li>
-            商家入驻
+            Market Center
             <span class="space"></span>
           </li>
-          <li>
-            营销中心
-            <span class="space"></span>
-          </li>
-          <li>
-            友情链接
-            <span class="space"></span>
-          </li>
-          <li>
-            关于我们
-            <span class="space"></span>
-          </li>
-          <li>
-            营销中心
-            <span class="space"></span>
-          </li>
-          <li>
-            友情链接
-            <span class="space"></span>
-          </li>
-          <li>关于我们</li>
+          <li>Friendly Link</li>
         </ul>
         <p>Address: SDU QD Campus</p>
       </div>
