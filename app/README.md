@@ -27,6 +27,8 @@ cnpm install --save axios
 
 https://www.npmjs.com/package/axios
 
+跨域
+
 # 基本操作
 
 ## Project setup
