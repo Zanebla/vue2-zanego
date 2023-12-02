@@ -29,6 +29,10 @@ https://www.npmjs.com/package/axios
 
 跨域
 
+cnpm install --save nprogress
+
+https://github.com/rstacruz/nprogress
+
 # 基本操作
 
 ## Project setup
