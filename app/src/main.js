@@ -10,6 +10,8 @@ import store from '@/store'
 
 import '@/mock/mockServe'
 
+import 'swiper/css/swiper.css'
+
 Vue.config.productionTip = false
 
 new Vue({

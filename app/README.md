@@ -39,6 +39,8 @@ http://lab.aitechlab.cn/
 
 cnpm install mockjs
 
+cnpm install --save swiper@5
+
 # 基本操作
 
 ## Project setup

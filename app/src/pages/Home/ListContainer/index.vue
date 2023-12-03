@@ -1,19 +1,20 @@
 <template>
-  <!--列表-->
   <div class="list-container">
     <div class="sortList clearfix">
       <div class="center">
-        <!--banner轮播-->
         <div class="swiper-container" id="mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg" />
+            <div
+              class="swiper-slide"
+              v-for="carousel in bannerList"
+              :key="carousel.id"
+            >
+              <img :src="carousel.imgUrl" />
             </div>
           </div>
-          <!-- 如果需要分页器 -->
+
           <div class="swiper-pagination"></div>
 
-          <!-- 如果需要导航按钮 -->
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
         </div>
@@ -33,51 +34,51 @@
         <ul class="lifeservices">
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">话费</span>
+            <span class="service-intro">Phone</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">机票</span>
+            <span class="service-intro">Plane</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">电影票</span>
+            <span class="service-intro">Movie</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">游戏</span>
+            <span class="service-intro">Game</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">彩票</span>
+            <span class="service-intro">Lottery</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">加油站</span>
+            <span class="service-intro">Gas</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">酒店</span>
+            <span class="service-intro">Hotel</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">火车票</span>
+            <span class="service-intro">Train</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">众筹</span>
+            <span class="service-intro">Crowdfund</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">理财</span>
+            <span class="service-intro">Financing</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">礼品卡</span>
+            <span class="service-intro">Card</span>
           </li>
           <li class="life-item">
             <i class="list-item"></i>
-            <span class="service-intro">白条</span>
+            <span class="service-intro">IOU</span>
           </li>
         </ul>
         <div class="ads">
@@ -90,6 +91,8 @@
 
 <script>
 import { mapState } from "vuex"
+import Swiper from "swiper"
+
 export default {
   name: "ListContainer",
   mounted () {
@@ -99,6 +102,25 @@ export default {
     ...mapState({
       bannerList: state => state.home.bannerList
     })
+  },
+  watch: {
+    bannerList: {
+      handler (newValue, oldValue) {
+        this.$nextTick(() => {
+          var mySwiper = new Swiper(document.querySelector(".swiper-container"), {
+            loop: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev"
+            }
+          })
+        })
+      }
+    }
   }
 }
 </script>
