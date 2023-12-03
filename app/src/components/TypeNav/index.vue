@@ -12,8 +12,13 @@
       </nav>
       <div class="sort">
         <div class="all-sort-list2">
-          <div class="item" v-for="c1 in categoryList" :key="c1.categoryId">
-            <h3>
+          <div
+            class="item"
+            v-for="(c1, index) in categoryList"
+            :key="c1.categoryId"
+            :class="{ cur: currentIndex === index }"
+          >
+            <h3 @mouseenter="changeIndex(index)" @mouseleave="leaveIndex">
               <a href="">{{ c1.categoryName }}</a>
             </h3>
             <div class="item-list clearfix">
@@ -46,6 +51,11 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'TypeNav',
+  data () {
+    return {
+      currentIndex: -1
+    }
+  },
   mounted () {
     this.$store.dispatch('categoryList')
   },
@@ -53,6 +63,14 @@ export default {
     ...mapState({
       categoryList: state => state.home.categoryList
     })
+  },
+  methods: {
+    changeIndex (index) {
+      this.currentIndex = index
+    },
+    leaveIndex () {
+      this.currentIndex = -1
+    }
   }
 }
 </script>
@@ -172,6 +190,10 @@ export default {
               display: block;
             }
           }
+        }
+
+        .cur {
+          background-color: hotpink;
         }
       }
     }
