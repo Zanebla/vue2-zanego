@@ -8,9 +8,9 @@ import router from '@/router'
 
 import store from '@/store'
 
-Vue.config.productionTip = false
-
 import '@/mock/mockServe'
+
+Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
