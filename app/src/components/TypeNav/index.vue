@@ -1,5 +1,4 @@
 <template>
-  <!-- 商品分类导航 -->
   <div class="type-nav">
     <div class="container">
       <h2 class="all">All Products</h2>
