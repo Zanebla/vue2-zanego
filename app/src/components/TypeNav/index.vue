@@ -1,7 +1,7 @@
 <template>
   <div class="type-nav">
-    <div class="container">
-      <h2 class="all">All Products</h2>
+    <div class="container" @mouseleave="leaveShow">
+      <h2 class="all" @mouseenter="enterShow">All Products</h2>
       <nav class="nav">
         <a href="###">Clothing</a>
         <a href="###">Makeups</a>
@@ -9,50 +9,52 @@
         <a href="###">Zanego Worldwide</a>
         <a href="###">Flash Sale</a>
       </nav>
-      <div class="sort">
-        <div class="all-sort-list2" @click="goSearch">
-          <div
-            class="item"
-            v-for="(c1, index) in categoryList"
-            :key="c1.categoryId"
-            :class="{ cur: currentIndex === index }"
-          >
-            <h3 @mouseenter="changeIndex(index)" @mouseleave="leaveIndex">
-              <a
-                :data-categoryName="c1.categoryName"
-                :data-category1Id="c1.categoryId"
-                >{{ c1.categoryName }}</a
-              >
-            </h3>
-            <div class="item-list clearfix">
-              <div
-                class="subitem"
-                v-for="c2 in c1.categoryChild"
-                :key="c2.categoryId"
-              >
-                <dl class="fore">
-                  <dt>
-                    <a
-                      :data-categoryName="c2.categoryName"
-                      :data-category2Id="c2.categoryId"
-                      >{{ c2.categoryName }}</a
-                    >
-                  </dt>
-                  <dd>
-                    <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
+      <transition name="sort">
+        <div class="sort" v-show="show">
+          <div class="all-sort-list2" @click="goSearch">
+            <div
+              class="item"
+              v-for="(c1, index) in categoryList"
+              :key="c1.categoryId"
+              :class="{ cur: currentIndex === index }"
+            >
+              <h3 @mouseenter="changeIndex(index)" @mouseleave="leaveIndex">
+                <a
+                  :data-categoryName="c1.categoryName"
+                  :data-category1Id="c1.categoryId"
+                  >{{ c1.categoryName }}</a
+                >
+              </h3>
+              <div class="item-list clearfix">
+                <div
+                  class="subitem"
+                  v-for="c2 in c1.categoryChild"
+                  :key="c2.categoryId"
+                >
+                  <dl class="fore">
+                    <dt>
                       <a
-                        :data-categoryName="c3.categoryName"
-                        :data-category3Id="c3.categoryId"
-                        >{{ c3.categoryName }}</a
+                        :data-categoryName="c2.categoryName"
+                        :data-category2Id="c2.categoryId"
+                        >{{ c2.categoryName }}</a
                       >
-                    </em>
-                  </dd>
-                </dl>
+                    </dt>
+                    <dd>
+                      <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
+                        <a
+                          :data-categoryName="c3.categoryName"
+                          :data-category3Id="c3.categoryId"
+                          >{{ c3.categoryName }}</a
+                        >
+                      </em>
+                    </dd>
+                  </dl>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -65,11 +67,16 @@ export default {
   name: 'TypeNav',
   data () {
     return {
-      currentIndex: -1
+      currentIndex: -1,
+      show: true
     }
   },
   mounted () {
     this.$store.dispatch('categoryList')
+
+    if (this.$route.path != "/home") {
+      this.show = false
+    }
   },
   computed: {
     ...mapState({
@@ -99,6 +106,14 @@ export default {
 
         location.query = query
         this.$router.push(location)
+      }
+    },
+    enterShow () {
+      this.show = true
+    },
+    leaveShow () {
+      if (this.$route.path != "/home") {
+        this.show = false
       }
     }
   }
@@ -226,6 +241,18 @@ export default {
           background-color: hotpink;
         }
       }
+    }
+
+    .sort-enter {
+      height: 0px;
+    }
+
+    .sort-enter-to {
+      height: 461px;
+    }
+
+    .sort-enter-active {
+      transition: all 0.3s linear;
     }
   }
 }
