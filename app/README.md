@@ -37,6 +37,8 @@ cnpm install --save vuex@3
 
 http://lab.aitechlab.cn/
 
+cnpm install mockjs
+
 # 基本操作
 
 ## Project setup

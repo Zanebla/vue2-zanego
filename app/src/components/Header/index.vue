@@ -1,6 +1,5 @@
 <template>
   <header class="header">
-    <!-- 头部的第一行 -->
     <div class="top">
       <div class="container">
         <div class="loginList">
@@ -23,13 +22,14 @@
         </div>
       </div>
     </div>
-    <!--头部第二行 搜索区域-->
+
     <div class="bottom">
       <h1 class="logoArea">
         <router-link class="logo" title="Zanego" to="/home">
           <img src="./images/logo.jpg" alt="" />
         </router-link>
       </h1>
+
       <div class="searchArea">
         <form action="###" class="searchForm">
           <input
@@ -128,7 +128,7 @@ export default {
 
       .logo {
         img {
-          width: 100px;
+          width: 85px;
           margin: 25px 45px;
         }
       }
