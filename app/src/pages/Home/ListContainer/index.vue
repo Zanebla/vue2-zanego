@@ -128,6 +128,7 @@ export default {
 <style scoped lang="less">
 .list-container {
   width: 1200px;
+  height: 490px;
   margin: 0 auto;
 
   .sortList {

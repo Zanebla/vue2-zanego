@@ -157,7 +157,7 @@ export default {
       left: 0;
       top: 45px;
       width: 210px;
-      height: 461px;
+      height: 430px;
       position: absolute;
       background: #fafafa;
       z-index: 999;
