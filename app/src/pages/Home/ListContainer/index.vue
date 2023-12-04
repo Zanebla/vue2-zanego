@@ -2,7 +2,7 @@
   <div class="list-container">
     <div class="sortList clearfix">
       <div class="center">
-        <div class="swiper-container" id="mySwiper">
+        <div class="swiper-container" ref="mySwiper">
           <div class="swiper-wrapper">
             <div
               class="swiper-slide"
@@ -107,7 +107,7 @@ export default {
     bannerList: {
       handler (newValue, oldValue) {
         this.$nextTick(() => {
-          var mySwiper = new Swiper(document.querySelector(".swiper-container"), {
+          var mySwiper = new Swiper(this.$refs.mySwiper, {
             loop: true,
             pagination: {
               el: ".swiper-pagination",

@@ -1,31 +1,24 @@
 <template>
-  <!--楼层-->
   <div class="floor">
     <div class="py-container">
       <div class="title clearfix">
-        <h3 class="fl">JOJO and Bears</h3>
+        <h3 class="fl">JOJO</h3>
         <div class="fr">
           <ul class="nav-tabs clearfix">
             <li class="active">
               <a href="#tab1" data-toggle="tab">Hot</a>
             </li>
             <li>
-              <a href="#tab2" data-toggle="tab">大家电</a>
+              <a href="#tab2" data-toggle="tab">Major Appliance</a>
             </li>
             <li>
-              <a href="#tab3" data-toggle="tab">生活电器</a>
+              <a href="#tab3" data-toggle="tab">Household Appliances</a>
             </li>
             <li>
-              <a href="#tab4" data-toggle="tab">厨房电器</a>
+              <a href="#tab4" data-toggle="tab">Kitchen Appliances</a>
             </li>
             <li>
-              <a href="#tab5" data-toggle="tab">应季电器</a>
-            </li>
-            <li>
-              <a href="#tab6" data-toggle="tab">空气/净水</a>
-            </li>
-            <li>
-              <a href="#tab7" data-toggle="tab">高端电器</a>
+              <a href="#tab5" data-toggle="tab">High-end Appliances</a>
             </li>
           </ul>
         </div>
@@ -51,10 +44,9 @@
                     <img src="./images/floor-1-b01.jpg" />
                   </div>
                 </div>
-                <!-- 如果需要分页器 -->
+
                 <div class="swiper-pagination"></div>
 
-                <!-- 如果需要导航按钮 -->
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
               </div>
@@ -89,7 +81,8 @@
 
 <script>
 export default {
-
+  name: "",
+  props: ['list']
 }
 </script>
 
@@ -133,7 +126,7 @@ export default {
               }
             }
 
-            &:nth-child(7) {
+            &:nth-child(5) {
               a {
                 &::after {
                   content: "";
