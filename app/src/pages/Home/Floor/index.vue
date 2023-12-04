@@ -2,7 +2,7 @@
   <div class="floor">
     <div class="py-container">
       <div class="title clearfix">
-        <h3 class="fl">JOJO</h3>
+        <h3 class="fl">{{ list.name }}</h3>
         <div class="fr">
           <ul class="nav-tabs clearfix">
             <li class="active">
@@ -28,20 +28,21 @@
           <div class="floor-1">
             <div class="blockgary">
               <ul class="jd-list">
-                <li>节能补贴</li>
-                <li>4K电视</li>
-                <li>空气净化器</li>
-                <li>IH电饭煲</li>
-                <li>滚筒洗衣机</li>
-                <li>电热水器</li>
+                <li v-for="(keyword, index) in list.keywords" :key="index">
+                  {{ keyword }}
+                </li>
               </ul>
-              <img src="./images/floor-1-1.png" />
+              <img :src="list.imgUrl" />
             </div>
             <div class="floorBanner">
-              <div class="swiper-container" id="floor1Swiper">
+              <div class="swiper-container" ref="cur">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b01.jpg" />
+                  <div
+                    class="swiper-slide"
+                    v-for="carousel in list.carouselList"
+                    :key="carousel.id"
+                  >
+                    <img :src="carousel.imgUrl" />
                   </div>
                 </div>
 
@@ -54,22 +55,22 @@
             <div class="split">
               <span class="floor-x-line"></span>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-1.png" />
+                <img :src="list.recommendList[0]" />
               </div>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-1.png" />
+                <img :src="list.recommendList[1]" />
               </div>
             </div>
             <div class="split center">
-              <img src="./images/floor-center.jpg" />
+              <img :src="list.bigImg" />
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-1.png" />
+                <img :src="list.recommendList[2]" />
               </div>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-1.png" />
+                <img :src="list.recommendList[3]" />
               </div>
             </div>
           </div>
@@ -80,9 +81,24 @@
 </template>
 
 <script>
+import Swiper from 'swiper'
+
 export default {
   name: "",
-  props: ['list']
+  props: ['list'],
+  mounted () {
+    var mySwiper = new Swiper(this.$refs.cur, {
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      }
+    })
+  }
 }
 </script>
 
@@ -157,6 +173,7 @@ export default {
             width: 210px;
             height: 100%;
             background: #f7f7f7;
+            overflow: hidden;
 
             .jd-list {
               padding: 15px 0;
@@ -175,6 +192,7 @@ export default {
 
             img {
               width: 100%;
+              object-fit: cover;
             }
           }
 
@@ -184,6 +202,7 @@ export default {
 
             img {
               width: 100%;
+              height: 360px;
             }
           }
 
@@ -203,11 +222,12 @@ export default {
             .floor-conver-pit {
               width: 100%;
               height: 50%;
+              overflow: hidden;
 
               img {
                 width: 100%;
-                height: 100%;
                 transition: all 400ms;
+                background-size: cover;
 
                 &:hover {
                   opacity: 0.8;
@@ -220,7 +240,8 @@ export default {
             border: 1px solid #e4e4e4;
 
             img {
-              width: 200px;
+              width: 100%;
+              height: 100%;
             }
           }
         }

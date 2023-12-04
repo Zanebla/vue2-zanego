@@ -1,37 +1,9 @@
 <template>
-  <!--商标-->
   <div class="brand">
     <div class="py-container">
       <ul class="brand-list">
-        <li class="brand-item">
-          <img src="./images/brand_21.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_03.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_05.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_07.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_09.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_11.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_13.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_15.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_17.png" />
-        </li>
-        <li class="brand-item">
-          <img src="./images/brand_19.png" />
+        <li class="brand-item" v-for="n in 10" :key="n">
+          <img src="./images/zane.jpg" />
         </li>
       </ul>
     </div>
@@ -55,6 +27,7 @@ export default {
     .brand-list {
       overflow: hidden;
       padding: 15px 0;
+
       background: #f7f7f7;
       line-height: 18px;
 
@@ -64,6 +37,9 @@ export default {
         height: 37px;
 
         img {
+          max-width: 100%;
+          max-height: 100%;
+
           border-left: 1px dotted #ccc;
           padding: 0 10px;
         }
