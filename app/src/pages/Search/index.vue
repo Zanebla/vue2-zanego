@@ -155,7 +155,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['goodsList', 'trademarkList', 'attrsList'])
+    ...mapGetters(['goodsList'])
   },
 
   methods: {
