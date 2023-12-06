@@ -7,7 +7,7 @@
           <li
             v-for="trademark in trademarkList"
             :key="trademark.tmId"
-            @click="tradeMarkHandler"
+            @click="tradeMarkHandler(trademark)"
           >
             {{ trademark.tmName }}
           </li>
@@ -39,8 +39,8 @@ export default {
     ...mapGetters(["trademarkList", "attrsList"])
   },
   methods: {
-    tradeMarkHandler () {
-
+    tradeMarkHandler (trademark) {
+      this.$emit('trademarkInfo', trademark)
     }
   }
 }
