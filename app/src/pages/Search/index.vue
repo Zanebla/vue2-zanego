@@ -91,7 +91,7 @@
             <div class="sui-pagination clearfix">
               <ul>
                 <li class="prev disabled">
-                  <a href="#">«上一页</a>
+                  <a href="#">Previous Page</a>
                 </li>
                 <li class="active">
                   <a href="#">1</a>
@@ -110,7 +110,7 @@
                 </li>
                 <li class="dotted"><span>...</span></li>
                 <li class="next">
-                  <a href="#">下一页»</a>
+                  <a href="#">Next Page</a>
                 </li>
               </ul>
               <div><span>共10页&nbsp;</span></div>
@@ -128,17 +128,40 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Search',
-
+  data () {
+    return {
+      searchParams: {
+        category1Id: "",
+        category2Id: "",
+        category3Id: "",
+        categoryName: "",
+        keyword: "",
+        order: "",
+        pageNo: 1,
+        pageSize: 5,
+        props: [],
+        trademark: ""
+      }
+    }
+  },
   components: {
     SearchSelector
   },
-
+  beforeMount () {
+    Object.assign(this.searchParams, this.$route.query, this.$route.params)
+  },
   mounted () {
-    this.$store.dispatch("getSearchList", {})
+    this.getData()
   },
 
   computed: {
-    ...mapGetters(['goodsList', 'tradeMarkList', 'attrsList'])
+    ...mapGetters(['goodsList', 'trademarkList', 'attrsList'])
+  },
+
+  methods: {
+    getData () {
+      this.$store.dispatch("getSearchList", this.searchParams)
+    }
   }
 }
 </script>
@@ -387,7 +410,7 @@ export default {
       }
 
       .page {
-        width: 733px;
+        width: 933px;
         height: 66px;
         overflow: hidden;
         float: right;
@@ -399,7 +422,7 @@ export default {
             margin-left: 0;
             margin-bottom: 0;
             vertical-align: middle;
-            width: 490px;
+            width: 600px;
             float: left;
 
             li {
