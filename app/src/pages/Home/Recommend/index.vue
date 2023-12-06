@@ -1,5 +1,4 @@
 <template>
-  <!--今日推荐-->
   <div class="today-recommend">
     <div class="py-container">
       <ul class="recommend">
@@ -14,6 +13,9 @@
         </li>
         <li class="banner">
           <img src="./images/today02.jpg" />
+        </li>
+        <li class="banner">
+          <img src="./images/today01.jpg" />
         </li>
       </ul>
     </div>
