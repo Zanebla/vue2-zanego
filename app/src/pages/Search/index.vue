@@ -27,22 +27,22 @@
             <div class="navbar-inner filter">
               <ul class="sui-nav">
                 <li class="active">
-                  <a href="#">综合</a>
+                  <a href="#">Comprehensive</a>
                 </li>
                 <li>
-                  <a href="#">销量</a>
+                  <a href="#">Sales</a>
                 </li>
                 <li>
-                  <a href="#">新品</a>
+                  <a href="#">New</a>
                 </li>
                 <li>
-                  <a href="#">评价</a>
+                  <a href="#">Comments</a>
                 </li>
                 <li>
-                  <a href="#">价格⬆</a>
+                  <a href="#">Price⬆</a>
                 </li>
                 <li>
-                  <a href="#">价格⬇</a>
+                  <a href="#">Price⬇</a>
                 </li>
               </ul>
             </div>
@@ -113,7 +113,7 @@
                   <a href="#">Next Page</a>
                 </li>
               </ul>
-              <div><span>共10页&nbsp;</span></div>
+              <div><span>10 pages&nbsp;</span></div>
             </div>
           </div>
         </div>
@@ -153,14 +153,21 @@ export default {
   mounted () {
     this.getData()
   },
-
   computed: {
     ...mapGetters(['goodsList'])
   },
-
   methods: {
     getData () {
       this.$store.dispatch("getSearchList", this.searchParams)
+    }
+  },
+  watch: {
+    $route (newValue, oldValue) {
+      Object.assign(this.searchParams, this.$route.query, this.$route.params)
+      this.getData()
+      this.searchParams.category1Id = ''
+      this.searchParams.category2Id = ''
+      this.searchParams.category3Id = ''
     }
   }
 }
