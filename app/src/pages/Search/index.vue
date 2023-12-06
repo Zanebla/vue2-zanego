@@ -63,25 +63,24 @@
                     </strong>
                   </div>
                   <div class="attr">
-                    <a
-                      target="_blank"
-                      href="item.html"
-                      title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
-                      >{{ good.title }}</a
-                    >
+                    <a target="_blank" href="item.html" :title="good.title">{{
+                      good.title
+                    }}</a>
                   </div>
                   <div class="commit">
-                    <i class="command">已有<span>2000</span>人评价</i>
+                    <i class="command"
+                      ><span>7777</span> people have evaluated</i
+                    >
                   </div>
                   <div class="operate">
                     <a
                       href="success-cart.html"
                       target="_blank"
                       class="sui-btn btn-bordered btn-danger"
-                      >加入购物车</a
+                      >Add to shopping cart</a
                     >
                     <a href="javascript:void(0);" class="sui-btn btn-bordered"
-                      >收藏</a
+                      >Collect</a
                     >
                   </div>
                 </div>
@@ -139,7 +138,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['goodsList'])
+    ...mapGetters(['goodsList', 'tradeMarkList', 'attrsList'])
   }
 }
 </script>
