@@ -37,7 +37,7 @@
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li :class="{ active: isOne }">
+                <li :class="{ active: isOne }" @click="changeOrder(1)">
                   <a
                     >Comprehensive
                     <span
@@ -50,7 +50,7 @@
                     ></span
                   ></a>
                 </li>
-                <li :class="{ active: isTwo }">
+                <li :class="{ active: isTwo }" @click="changeOrder(2)">
                   <a
                     >Price
                     <span
@@ -164,7 +164,7 @@ export default {
         category3Id: "",
         categoryName: "",
         keyword: "",
-        order: "2:asc",
+        order: "1:desc",
         pageNo: 1,
         pageSize: 5,
         props: [],
@@ -233,6 +233,19 @@ export default {
     },
     removeAttr (index) {
       this.searchParams.props.splice(index, 1)
+      this.getData()
+    },
+    changeOrder (flag) {
+      let originOrder = this.searchParams.order
+      let originFlag = this.searchParams.order.split(":")[0]
+      let originSort = this.searchParams.order.split(":")[1]
+      let newOrder = ''
+      if (flag == originFlag) {
+        newOrder = `${originFlag}:${originSort === "desc" ? "asc" : "desc"}`
+      } else {
+        newOrder = `${flag}:desc`
+      }
+      this.searchParams.order = newOrder
       this.getData()
     }
   },
