@@ -21,12 +21,18 @@
               {{ searchParams.trademark.split(":")[1]
               }}<i @click="removeTrademark">×</i>
             </li>
+            <li
+              class="with-x"
+              v-for="(attrValue, index) in searchParams.props"
+              :key="index"
+            >
+              {{ attrValue.split(":")[1] }}<i @click="removeAttr(index)">×</i>
+            </li>
           </ul>
         </div>
 
-        <SearchSelector @trademarkInfo="trademarkInfo" />
+        <SearchSelector @trademarkInfo="trademarkInfo" @attrInfo="attrInfo" />
 
-        <!--details-->
         <div class="details clearfix">
           <div class="sui-navbar">
             <div class="navbar-inner filter">
@@ -189,6 +195,15 @@ export default {
     },
     removeTrademark () {
       this.searchParams.trademark = ''
+      this.getData()
+    },
+    attrInfo (attr, attrValue) {
+      let props = `${attr.attrId}:${attrValue}:${attr.attrName}`
+      if (this.searchParams.props.indexOf(props) === -1) this.searchParams.props.push(props)
+      this.getData()
+    },
+    removeAttr (index) {
+      this.searchParams.props.splice(index, 1)
       this.getData()
     }
   },
