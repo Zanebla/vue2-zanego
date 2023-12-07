@@ -19,7 +19,14 @@ const actions = {
   }
 }
 
-const getters = {}
+const getters = {
+  categoryView (state) {
+    return state.goodInfo.categoryView || {}
+  },
+  skuInfo (state) {
+    return state.goodInfo.skuInfo || {}
+  }
+}
 
 export default {
   state,
