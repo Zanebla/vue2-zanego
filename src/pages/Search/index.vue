@@ -115,7 +115,13 @@
               </li>
             </ul>
           </div>
-          <Pagination :pageNo="29" :pageSize="3" :total="99" :continues="5" />
+          <Pagination
+            :pageNo="searchParams.pageNo"
+            :pageSize="searchParams.pageSize"
+            :total="total"
+            :continues="5"
+            @getPageNo="getPageNo"
+          />
         </div>
       </div>
     </div>
@@ -124,7 +130,7 @@
 
 <script>
 import SearchSelector from './SearchSelector/SearchSelector'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'Search',
@@ -166,7 +172,10 @@ export default {
     },
     isAsc () {
       return this.searchParams.order.indexOf('asc') !== -1
-    }
+    },
+    ...mapState({
+      total: state => state.search.searchList.total
+    })
   },
   methods: {
     getData () {
@@ -218,6 +227,10 @@ export default {
         newOrder = `${flag}:desc`
       }
       this.searchParams.order = newOrder
+      this.getData()
+    },
+    getPageNo (pageNo) {
+      this.searchParams.pageNo = pageNo
       this.getData()
     }
   },

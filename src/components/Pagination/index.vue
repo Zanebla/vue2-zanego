@@ -1,20 +1,41 @@
 <template>
   <div class="pagination">
-    <button>Previous</button>
-    <button v-show="startNumAndendNum.start > 1">1</button>
+    <button :disabled="pageNo === 1" @click="$emit('getPageNo', pageNo - 1)">
+      Previous
+    </button>
+    <button
+      v-show="startNumAndendNum.start > 1"
+      @click="$emit('getPageNo', 1)"
+      :class="{ active: pageNo == 1 }"
+    >
+      1
+    </button>
     <button v-show="startNumAndendNum.start > 2">···</button>
 
     <button
       v-for="(page, index) in startNumAndendNum.end"
       :key="index"
       v-show="page >= startNumAndendNum.start"
+      @click="$emit('getPageNo', page)"
+      :class="{ active: pageNo == page }"
     >
       {{ page }}
     </button>
 
     <button v-show="startNumAndendNum.end < totalPage - 1">···</button>
-    <button v-show="startNumAndendNum.end < totalPage">{{ totalPage }}</button>
-    <button>Next</button>
+    <button
+      v-show="startNumAndendNum.end < totalPage"
+      @click="$emit('getPageNo', totalPage)"
+      :class="{ active: pageNo == totalPage }"
+    >
+      {{ totalPage }}
+    </button>
+    <button
+      :disabled="pageNo === totalPage"
+      @click="$emit('getPageNo', pageNo + 1)"
+    >
+      Next
+    </button>
     <button style="margin-left: 30px">Sum: {{ total }} items</button>
   </div>
 </template>
