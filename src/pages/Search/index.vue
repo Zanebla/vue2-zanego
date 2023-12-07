@@ -37,8 +37,31 @@
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li class="active">
-                  <a href="#">Comprehensive</a>
+                <li :class="{ active: isOne }">
+                  <a
+                    >Comprehensive
+                    <span
+                      v-show="isOne"
+                      class="iconfont"
+                      :class="{
+                        'icon-Arrows_Arrow_Down': isDesc,
+                        'icon-Arrows_Arrow_Up': isAsc,
+                      }"
+                    ></span
+                  ></a>
+                </li>
+                <li :class="{ active: isTwo }">
+                  <a
+                    >Price
+                    <span
+                      v-show="isTwo"
+                      class="iconfont"
+                      :class="{
+                        'icon-Arrows_Arrow_Down': isDesc,
+                        'icon-Arrows_Arrow_Up': isAsc,
+                      }"
+                    ></span
+                  ></a>
                 </li>
                 <li>
                   <a href="#">Sales</a>
@@ -48,12 +71,6 @@
                 </li>
                 <li>
                   <a href="#">Comments</a>
-                </li>
-                <li>
-                  <a href="#">Price⬆</a>
-                </li>
-                <li>
-                  <a href="#">Price⬇</a>
                 </li>
               </ul>
             </div>
@@ -147,7 +164,7 @@ export default {
         category3Id: "",
         categoryName: "",
         keyword: "",
-        order: "",
+        order: "2:asc",
         pageNo: 1,
         pageSize: 5,
         props: [],
@@ -165,7 +182,19 @@ export default {
     this.getData()
   },
   computed: {
-    ...mapGetters(['goodsList'])
+    ...mapGetters(['goodsList']),
+    isOne () {
+      return this.searchParams.order.indexOf('1') !== -1
+    },
+    isTwo () {
+      return this.searchParams.order.indexOf('2') !== -1
+    },
+    isDesc () {
+      return this.searchParams.order.indexOf('desc') !== -1
+    },
+    isAsc () {
+      return this.searchParams.order.indexOf('asc') !== -1
+    }
   },
   methods: {
     getData () {
