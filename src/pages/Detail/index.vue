@@ -14,16 +14,13 @@
           categoryView.category3Name
         }}</span>
       </div>
-      <!-- 主要内容区域 -->
+
       <div class="mainCon">
-        <!-- 左侧放大镜区域 -->
         <div class="previewWrap">
-          <!--放大镜效果-->
-          <Zoom />
-          <!-- 小图列表 -->
+          <Zoom :skuImageList="skuImageList" />
           <ImageList />
         </div>
-        <!-- 右侧选择区域布局 -->
+
         <div class="InfoWrap">
           <div class="goodsDetail">
             <h3 class="InfoName">
@@ -41,8 +38,8 @@
                   <span>Price Reduction Notice</span>
                 </div>
                 <div class="remark">
-                  <i>累计评价</i>
-                  <em>65545</em>
+                  <i>Accumulated Evaluation </i>
+                  <em>65535</em>
                 </div>
               </div>
               <div class="priceArea2">
@@ -50,9 +47,9 @@
                   <i>促&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</i>
                 </div>
                 <div class="fixWidth">
-                  <i class="red-bg">加价购</i>
-                  <em class="t-gray"
-                    >满1999.00另加20.00元，或满2999.00另加30.00元，即可在购物车换购热销商品</em
+                  <i class="red-bg">Markup purchase</i>
+                  <em class="t-gray">
+                    满1999.00另加20.00元，或满2999.00另加30.00元，即可在购物车换购热销商品</em
                   >
                 </div>
               </div>
@@ -364,7 +361,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['categoryView', 'skuInfo'])
+    ...mapGetters(['categoryView', 'skuInfo']),
+    skuImageList () {
+      return this.skuInfo.skuImageList || []
+    }
   }
 }
 </script>
