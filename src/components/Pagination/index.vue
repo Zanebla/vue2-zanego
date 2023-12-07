@@ -1,15 +1,19 @@
 <template>
   <div class="pagination">
     <button>Previous</button>
-    <button>1</button>
-    <button>···</button>
-    <button>3</button>
-    <button>4</button>
-    <button>5</button>
-    <button>6</button>
-    <button>7</button>
-    <button>···</button>
-    <button>{{ totalPage }}</button>
+    <button v-show="startNumAndendNum.start > 1">1</button>
+    <button v-show="startNumAndendNum.start > 2">···</button>
+
+    <button
+      v-for="(page, index) in startNumAndendNum.end"
+      :key="index"
+      v-show="page >= startNumAndendNum.start"
+    >
+      {{ page }}
+    </button>
+
+    <button v-show="startNumAndendNum.end < totalPage - 1">···</button>
+    <button v-show="startNumAndendNum.end < totalPage">{{ totalPage }}</button>
     <button>Next</button>
     <button style="margin-left: 30px">Sum: {{ total }} items</button>
   </div>
