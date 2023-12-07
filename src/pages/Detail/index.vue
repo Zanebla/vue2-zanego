@@ -60,7 +60,7 @@
                   支&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;持
                 </div>
                 <div class="fixWidth">
-                  以旧换新，闲置手机回收 4G套餐超值抢 礼品购
+                  以旧换新 闲置手机回收 4G套餐超值抢 礼品购
                 </div>
               </div>
               <div class="supportArea">
@@ -80,6 +80,12 @@
                   :class="{ active: spuSaleAttrValue.isChecked == 1 }"
                   v-for="spuSaleAttrValue in spuSaleAttr.spuSaleAttrValueList"
                   :key="spuSaleAttrValue.id"
+                  @click="
+                    changeActive(
+                      spuSaleAttrValue,
+                      spuSaleAttr.spuSaleAttrValueList
+                    )
+                  "
                 >
                   {{ spuSaleAttrValue.saleAttrValueName }}
                 </dd>
@@ -92,7 +98,7 @@
                 <a href="javascript:" class="mins">-</a>
               </div>
               <div class="add">
-                <a href="javascript:">加入购物车</a>
+                <a href="javascript:">Add to Cart</a>
               </div>
             </div>
           </div>
@@ -100,12 +106,11 @@
       </div>
     </section>
 
-    <!-- 内容详情页 -->
     <section class="product-detail">
       <aside class="aside">
         <div class="tabWraped">
-          <h4 class="active">相关分类</h4>
-          <h4>推荐品牌</h4>
+          <h4 class="active">Classification</h4>
+          <h4>Recommended</h4>
         </div>
         <div class="tabContent">
           <div class="tab-pane active">
@@ -351,6 +356,14 @@ export default {
     ...mapGetters(['categoryView', 'skuInfo', 'spuSaleAttrList']),
     skuImageList () {
       return this.skuInfo.skuImageList || []
+    }
+  },
+  methods: {
+    changeActive (saleAttrValue, arr) {
+      arr.forEach(item => {
+        item.isChecked = 0
+      })
+      saleAttrValue.isChecked = 1
     }
   }
 }
