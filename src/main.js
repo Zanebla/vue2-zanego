@@ -2,7 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import TypeNav from '@/components/TypeNav'
+import Pagination from '@/components/Pagination'
+
 Vue.component(TypeNav.name, TypeNav)
+Vue.component(Pagination.name, Pagination)
 
 import router from '@/router'
 
