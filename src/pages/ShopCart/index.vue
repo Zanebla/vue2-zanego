@@ -58,7 +58,7 @@
         <span>Select All</span>
       </div>
       <div class="option">
-        <a href="#none">Delete selected products</a>
+        <a @click="deleteAllCheckedItem">Delete selected products</a>
         <a href="#none">移到我的关注</a>
         <a href="#none">清除下柜商品</a>
       </div>
@@ -69,7 +69,7 @@
           <i class="summoney">{{ totalPrice }}</i>
         </div>
         <div class="sumbtn">
-          <a class="sum-btn" href="###" target="_blank">结算</a>
+          <a class="sum-btn" href="###" target="_blank">Settlement</a>
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import throttle from 'lodash/throttle'
+import throttle from "lodash/throttle"
 
 export default {
   name: 'ShopCart',
@@ -112,18 +112,26 @@ export default {
         alert(error.message)
       }
     }, 500),
-    deleteCartById: throttle(async function (cart) {
+    async deleteCartById (cart) {
       try {
         await this.$store.dispatch('deleteCartListBySkuId', cart.skuId)
         this.getData()
       } catch (error) {
         alert(error.message)
       }
-    }, 1000),
+    },
     async updateChecked (cart, event) {
       try {
         let isChecked = event.target.checked ? "1" : "0"
         await this.$store.dispatch('updateCheckedById', { skuId: cart.skuId, isChecked })
+        this.getData()
+      } catch (error) {
+        alert(error.message)
+      }
+    },
+    async deleteAllCheckedItem () {
+      try {
+        await this.$store.dispatch('deleteAllCheckedItem')
         this.getData()
       } catch (error) {
         alert(error.message)
