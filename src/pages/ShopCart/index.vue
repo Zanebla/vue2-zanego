@@ -29,15 +29,16 @@
             <span class="price">{{ cart.skuPrice }}</span>
           </li>
           <li class="cart-list-con5">
-            <a href="javascript:void(0)" class="mins">-</a>
+            <a class="mins" @click="handler('minus', -1, cart)">-</a>
             <input
               autocomplete="off"
               type="text"
               :value="cart.skuNum"
               minnum="1"
               class="itxt"
+              @change="handler('change', $event.target.value * 1, cart)"
             />
-            <a href="javascript:void(0)" class="plus">+</a>
+            <a class="plus" @click="handler('add', 1, cart)">+</a>
           </li>
           <li class="cart-list-con6">
             <span class="sum">{{ cart.skuNum * cart.skuPrice }}</span>
@@ -84,6 +85,29 @@ export default {
   methods: {
     getData () {
       this.$store.dispatch('getCartList')
+    },
+    async handler (type, disNum, cart) {
+      switch (type) {
+        case "add":
+          disNum = 1
+          break
+        case "change":
+          if (isNaN(disNum) || disNum < 1) {
+            disNum = 0
+          } else {
+            disNum = parseInt(disNum) - cart.skuNum
+          }
+          break
+        case "minus":
+          disNum = cart.skuNum > 1 ? -1 : 0
+          break
+      }
+      try {
+        await this.$store.dispatch('addOrUpdateShopCart', { skuId: cart.skuId, skuNum: disNum })
+        this.getData()
+      } catch (error) {
+
+      }
     }
   },
   computed: {
