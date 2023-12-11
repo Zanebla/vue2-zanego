@@ -44,7 +44,7 @@
             <span class="sum">{{ cart.skuNum * cart.skuPrice }}</span>
           </li>
           <li class="cart-list-con7">
-            <a href="#none" class="sindelet">Delete</a>
+            <a class="sindelet" @click="deleteCartById(cart)">Delete</a>
             <br />
             <a href="#none">Collect</a>
           </li>
@@ -106,7 +106,15 @@ export default {
         await this.$store.dispatch('addOrUpdateShopCart', { skuId: cart.skuId, skuNum: disNum })
         this.getData()
       } catch (error) {
-
+        alert(error.message)
+      }
+    },
+    async deleteCartById (cart) {
+      try {
+        await this.$store.dispatch('deleteCartListBySkuId', cart.skuId)
+        this.getData()
+      } catch (error) {
+        alert(error.message)
       }
     }
   },
