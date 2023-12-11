@@ -57,7 +57,7 @@
         <span>Select All</span>
       </div>
       <div class="option">
-        <a href="#none">删除选中的商品</a>
+        <a href="#none">Delete selected products</a>
         <a href="#none">移到我的关注</a>
         <a href="#none">清除下柜商品</a>
       </div>
@@ -77,6 +77,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import throttle from 'lodash/throttle'
+
 export default {
   name: 'ShopCart',
   mounted () {
@@ -86,7 +88,7 @@ export default {
     getData () {
       this.$store.dispatch('getCartList')
     },
-    async handler (type, disNum, cart) {
+    handler: throttle(async function (type, disNum, cart) {
       switch (type) {
         case "add":
           disNum = 1
@@ -108,15 +110,15 @@ export default {
       } catch (error) {
         alert(error.message)
       }
-    },
-    async deleteCartById (cart) {
+    }, 500),
+    deleteCartById: throttle(async function (cart) {
       try {
         await this.$store.dispatch('deleteCartListBySkuId', cart.skuId)
         this.getData()
       } catch (error) {
         alert(error.message)
       }
-    }
+    }, 1000),
   },
   computed: {
     ...mapGetters(['cartList']),
