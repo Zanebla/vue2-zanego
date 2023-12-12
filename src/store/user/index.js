@@ -1,4 +1,4 @@
-import { reqGetCode } from "@/api"
+import { reqGetCode, reqUserRegister } from "@/api"
 const state = {
   code: ''
 }
@@ -17,6 +17,14 @@ const actions = {
       return 'ok'
     } else {
       return Promise.reject(new Error("fail"))
+    }
+  },
+  async userRegister ({ commit }, user) {
+    let result = await reqUserRegister(user)
+    if (result.code == 200) {
+      return 'ok'
+    } else {
+      return Promise.reject(new Error('fail...'))
     }
   }
 }

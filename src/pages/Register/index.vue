@@ -1,6 +1,5 @@
 <template>
   <div class="register-container">
-    <!-- 注册内容 -->
     <div class="register">
       <h3>
         Register A New User
@@ -53,7 +52,7 @@
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="btn">
-        <button>Complete Registration</button>
+        <button @click="userRegister">Complete Registration</button>
       </div>
     </div>
 
@@ -92,6 +91,15 @@ export default {
         const { phone } = this
         phone && (await this.$store.dispatch('getCode', phone))
         this.code = this.$store.state.user.code
+      } catch (error) {
+        alert(error.message)
+      }
+    },
+    async userRegister () {
+      try {
+        const { phone, code, password, passwordVerify } = this;
+        (phone && code && password == passwordVerify) && await this.$store.dispatch('userRegister', { phone, code, password })
+        this.$router.push('/login')
       } catch (error) {
         alert(error.message)
       }
