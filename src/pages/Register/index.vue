@@ -9,7 +9,7 @@
         </span>
       </h3>
       <div class="content">
-        <label>Phone Number:</label>
+        <label>Phone Number</label>
         <input
           type="text"
           placeholder="Please enter your phone number"
@@ -18,35 +18,38 @@
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
-        <label>Verification Code:</label>
+        <label>Verification Code</label>
         <input
           type="text"
           placeholder="Please enter your verification code"
           v-model="code"
         />
-        <button style="width: 110px; height: 38px">
+        <button style="width: 110px; height: 38px" @click="getCode">
           Obtain Verification Code
         </button>
-        <img
-          ref="code"
-          src="http://182.92.128.115/api/user/passport/code"
-          alt="code"
+        <span class="error-msg">错误提示信息</span>
+      </div>
+      <div class="content">
+        <label>Login password</label>
+        <input
+          type="password"
+          placeholder="Please enter your login password"
+          v-model="password"
         />
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
-        <label>登录密码:</label>
-        <input type="text" placeholder="请输入你的登录密码" />
-        <span class="error-msg">错误提示信息</span>
-      </div>
-      <div class="content">
-        <label>确认密码:</label>
-        <input type="text" placeholder="请输入确认密码" />
+        <label>Confirm password</label>
+        <input
+          type="password"
+          placeholder="Please enter the confirmation password"
+          v-model="passwordVerify"
+        />
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="controls">
-        <input name="m1" type="checkbox" />
-        <span>同意协议并注册《尚品汇用户协议》</span>
+        <input name="m1" type="checkbox" :checked="agree" />
+        <span> Agree To The Zanego User Agreement and Register</span>
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="btn">
@@ -78,7 +81,20 @@ export default {
     return {
       phone: '',
       code: '',
-
+      password: '',
+      passwordVerify: '',
+      agree: true
+    }
+  },
+  methods: {
+    async getCode () {
+      try {
+        const { phone } = this
+        phone && (await this.$store.dispatch('getCode', phone))
+        this.code = this.$store.state.user.code
+      } catch (error) {
+        alert(error.message)
+      }
     }
   }
 }
