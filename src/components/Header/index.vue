@@ -4,11 +4,15 @@
       <div class="container">
         <div class="loginList">
           <p>🛍 Welcome to Zanego!</p>
-          <p>
+          <p v-if="!userName">
             <router-link to="/login">Log In</router-link>
             <router-link class="register" to="/register"
               >Free Signup</router-link
             >
+          </p>
+          <p v-else>
+            <a>{{ userName }}</a>
+            <a class="register">Log out</a>
           </p>
         </div>
         <div class="typeList">
@@ -77,6 +81,11 @@ export default {
       }
 
       this.$router.push(location)
+    }
+  },
+  computed: {
+    userName () {
+      return this.$store.state.user.userInfo.name
     }
   }
 }

@@ -1,7 +1,8 @@
-import { reqGetCode, reqUserRegister, reqUserLogin } from "@/api"
+import { reqGetCode, reqUserRegister, reqUserLogin, reqUserInfo } from "@/api"
 const state = {
   code: '',
-  token: ''
+  token: '',
+  userInfo: {}
 }
 
 const mutations = {
@@ -10,6 +11,9 @@ const mutations = {
   },
   USERLOGIN (state, token) {
     state.token = token
+  },
+  GETUSERINFO (state, userInfo) {
+    state.userInfo = userInfo
   }
 }
 
@@ -39,6 +43,10 @@ const actions = {
     } else {
       return Promise.reject(new Error('fail'))
     }
+  },
+  async getUserInfo ({ commit }) {
+    let result = await reqUserInfo()
+    commit('GETUSERINFO', result.data)
   }
 }
 

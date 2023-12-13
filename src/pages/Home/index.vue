@@ -33,7 +33,8 @@ export default {
 
   },
   mounted () {
-    this.$store.dispatch("getFloorList")
+    this.$store.dispatch("getFloorList"),
+      this.$store.dispatch("getUserInfo")
   },
   computed: {
     ...mapState({

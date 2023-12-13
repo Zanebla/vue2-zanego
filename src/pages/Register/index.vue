@@ -58,14 +58,14 @@
 
     <div class="copyright">
       <ul>
-        <li>关于我们</li>
-        <li>联系我们</li>
-        <li>联系客服</li>
-        <li>商家入驻</li>
-        <li>营销中心</li>
-        <li>手机尚品汇</li>
-        <li>销售联盟</li>
-        <li>尚品汇社区</li>
+        <li>About</li>
+        <li>About</li>
+        <li>Contact</li>
+        <li>Contact</li>
+        <li>TikTok</li>
+        <li>TikTok</li>
+        <li>Github</li>
+        <li>Github</li>
       </ul>
       <div class="address">Address: SDU QingDao</div>
       <div class="beian">Phoenix Residence</div>
@@ -140,13 +140,13 @@ export default {
     }
 
     .content {
-      padding-left: 390px;
+      padding-left: 300px;
       margin-bottom: 18px;
       position: relative;
 
       label {
-        font-size: 14px;
-        width: 96px;
+        font-size: 14x;
+        width: 110px;
         text-align: right;
         display: inline-block;
       }
@@ -157,6 +157,7 @@ export default {
         padding-left: 8px;
         box-sizing: border-box;
         margin-left: 5px;
+        margin-right: 45px;
         outline: none;
         border: 1px solid #999;
       }
