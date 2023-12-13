@@ -14,14 +14,22 @@
           </ul>
 
           <div class="content">
-            <form action="##">
+            <form>
               <div class="input-text clearFix">
                 <span></span>
-                <input type="text" placeholder="邮箱/用户名/手机号" />
+                <input
+                  type="text"
+                  placeholder="Email/Username/Phone number"
+                  v-model="phone"
+                />
               </div>
               <div class="input-text clearFix">
                 <span class="pwd"></span>
-                <input type="text" placeholder="请输入密码" />
+                <input
+                  type="text"
+                  placeholder="Please enter your password"
+                  v-model="password"
+                />
               </div>
               <div class="setting clearFix">
                 <label class="checkbox inline">
@@ -30,7 +38,9 @@
                 </label>
                 <span class="forget">Forgot Password?</span>
               </div>
-              <button class="btn">Log&nbsp;&nbsp;In</button>
+              <button class="btn" @click.prevent="userLogin">
+                Log&nbsp;&nbsp;In
+              </button>
             </form>
 
             <div class="call clearFix">
@@ -48,17 +58,16 @@
         </div>
       </div>
     </div>
-    <!-- 底部 -->
     <div class="copyright">
       <ul>
-        <li>关于我们</li>
-        <li>联系我们</li>
-        <li>联系客服</li>
-        <li>商家入驻</li>
-        <li>营销中心</li>
-        <li>手机尚品汇</li>
-        <li>销售联盟</li>
-        <li>尚品汇社区</li>
+        <li>About</li>
+        <li>About</li>
+        <li>Contact</li>
+        <li>Contact</li>
+        <li>TikTok</li>
+        <li>TikTok</li>
+        <li>Github</li>
+        <li>Github</li>
       </ul>
       <div class="address">Address: SDU QingDao</div>
       <div class="beian">Phoenix Residence</div>
@@ -69,6 +78,23 @@
 <script>
 export default {
   name: 'Login',
+  data () {
+    return {
+      phone: '',
+      password: ''
+    }
+  },
+  methods: {
+    async userLogin () {
+      try {
+        const { phone, password } = this;
+        (phone && password) && await this.$store.dispatch('userLogin', { phone, password })
+        this.$router.push('/home')
+      } catch (error) {
+        alert(error.message)
+      }
+    }
+  }
 }
 </script>
 
@@ -79,10 +105,10 @@ export default {
     background-color: #e93854;
 
     .login {
-      width: 1200px;
+      width: 1250px;
       height: 487px;
       margin: 0 auto;
-      background: url(./images/loginbg.png) no-repeat;
+      background: url(./images/loginbg.jpg) no-repeat;
     }
 
     .loginform {
