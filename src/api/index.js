@@ -26,3 +26,6 @@ export const reqUserRegister = (data) => requests({ url: '/user/passport/registe
 export const reqUserLogin = (data) => requests({ url: '/user/passport/login', data, method: 'post' })
 
 export const reqUserInfo = () => requests({ url: 'user/passport/auth/getUserInfo', method: 'get' })
+
+export const reqLogout = () => requests({ 'url': '/user/passport/logout', method: 'get' })
+

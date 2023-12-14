@@ -12,7 +12,7 @@
           </p>
           <p v-else>
             <a>{{ userName }}</a>
-            <a class="register">Log out</a>
+            <a class="register" @click="logout">Log out</a>
           </p>
         </div>
         <div class="typeList">
@@ -81,6 +81,14 @@ export default {
       }
 
       this.$router.push(location)
+    },
+    async logout () {
+      try {
+        await this.$store.dispatch('userLogout')
+        this.$router.push('/home')
+      } catch (error) {
+        alert(error.message)
+      }
     }
   },
   computed: {
