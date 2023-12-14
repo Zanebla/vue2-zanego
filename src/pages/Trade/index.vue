@@ -3,47 +3,42 @@
     <h3 class="title">Fill In and Verify Order Information</h3>
     <div class="content">
       <h5 class="receive">Recipient Information</h5>
-      <div class="address clearFix">
-        <span class="username selected">张三</span>
-        <p>
-          <span class="s1">北京市昌平区宏福科技园综合楼6层</span>
-          <span class="s2">15010658793</span>
-          <span class="s3">默认地址</span>
-        </p>
-      </div>
-      <div class="address clearFix">
-        <span class="username selected">李四</span>
-        <p>
-          <span class="s1">北京市昌平区宏福科技园综合楼6层</span>
-          <span class="s2">13590909098</span>
-          <span class="s3">默认地址</span>
-        </p>
-      </div>
-      <div class="address clearFix">
-        <span class="username selected">王五</span>
-        <p>
-          <span class="s1">北京市昌平区宏福科技园综合楼6层</span>
-          <span class="s2">18012340987</span>
-          <span class="s3">默认地址</span>
+      <div
+        class="address clearFix"
+        v-for="address in addressInfo"
+        :key="address.id"
+      >
+        <span class="username" :class="{ selected: address.isDefault == 1 }">{{
+          address.consignee
+        }}</span>
+        <p @click="changeDefault(address, addressInfo)">
+          <span class="s1">{{ address.fullAddress }}</span>
+          <span class="s2">{{ address.phoneNum }}</span>
+          <span class="s3" v-show="address.isDefault == 1"
+            >Default Address</span
+          >
         </p>
       </div>
       <div class="line"></div>
-      <h5 class="pay">支付方式</h5>
+      <h5 class="pay">Payment Method</h5>
       <div class="address clearFix">
-        <span class="username selected">在线支付</span>
-        <span class="username" style="margin-left: 5px">货到付款</span>
+        <span class="username selected">Online payment</span>
+        <span class="username" style="margin-left: 5px">Cash on delivery</span>
       </div>
       <div class="line"></div>
-      <h5 class="pay">送货清单</h5>
+      <h5 class="pay">Delivery list</h5>
       <div class="way">
-        <h5>配送方式</h5>
+        <h5>Delivery method</h5>
         <div class="info clearFix">
-          <span class="s1">天天快递</span>
-          <p>配送时间：预计8月10日（周三）09:00-15:00送达</p>
+          <span class="s1">Zanebla Express</span>
+          <p>
+            Delivery time: Expected to arrive on Wednesday, August 10th from
+            09:00 to 15:00
+          </p>
         </div>
       </div>
       <div class="detail">
-        <h5>商品清单</h5>
+        <h5>Commodity List</h5>
         <ul class="list clearFix">
           <li>
             <img src="./images/goods.png" alt="" />
@@ -80,9 +75,9 @@
         </ul>
       </div>
       <div class="bbs">
-        <h5>买家留言：</h5>
+        <h5>Buyer message:</h5>
         <textarea
-          placeholder="建议留言前先与商家沟通确认"
+          placeholder="Suggest communicating and confirming with the merchant before leaving a message..."
           class="remarks-cont"
         ></textarea>
       </div>
@@ -112,10 +107,8 @@
     <div class="trade">
       <div class="price">应付金额:　<span>¥5399.00</span></div>
       <div class="receiveInfo">
-        寄送至:
-        <span>北京市昌平区宏福科技园综合楼6层</span>
-        收货人：<span>张三</span>
-        <span>15010658793</span>
+        Sent to:<span>SDU QingDao Campus</span> Consignee:<span>Zane</span>
+        <span>153****4262</span>
       </div>
     </div>
     <div class="sub clearFix">
@@ -125,8 +118,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Trade',
+  mounted () {
+    this.$store.dispatch('getUserAddress')
+    this.$store.dispatch('getOrderInfo')
+  },
+  computed: {
+    ...mapState({
+      addressInfo: state => state.trade.address
+    })
+  },
+  methods: {
+    changeDefault (address, addressInfo) {
+      addressInfo.forEach((item) => item.isDefault = 0)
+      address.isDefault = 1
+    }
+  }
 }
 </script>
 
@@ -169,12 +178,13 @@ export default {
       .username::after {
         content: "";
         display: none;
-        width: 13px;
-        height: 13px;
+        width: 6px;
+        height: 6px;
         position: absolute;
         right: 0;
         bottom: 0;
-        background: url(./images/choosed.png) no-repeat;
+        // background: url(./images/choosed.png) no-repeat;
+        background: #c81623;
       }
 
       .username.selected {
@@ -204,7 +214,7 @@ export default {
 
         .s3 {
           float: left;
-          width: 56px;
+          width: 100px;
           height: 24px;
           line-height: 24px;
           margin-left: 10px;

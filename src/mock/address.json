@@ -1,0 +1,35 @@
+[
+  {
+    "consignee": "Zane",
+    "fullAddress": "SDU QingDao Campus",
+    "id": 1111,
+    "isDefault": "1",
+    "phoneNum": "15366664262",
+    "provinceId": 1,
+    "regionId": 1,
+    "userAddress": "SDU QingDao Campus",
+    "userId": 2
+  },
+  {
+    "consignee": "Li Hao",
+    "fullAddress": "SDU QingDao Campus Li Hao",
+    "id": 2222,
+    "isDefault": "0",
+    "phoneNum": "13766663333",
+    "provinceId": 2,
+    "regionId": 2,
+    "userAddress": "SDU QingDao Campus Li Hao",
+    "userId": 3
+  },
+  {
+    "consignee": "Tan Hao tian",
+    "fullAddress": "SDU QingDao Campus THT",
+    "id": 3333,
+    "isDefault": "0",
+    "phoneNum": "15977776666",
+    "provinceId": 3,
+    "regionId": 3,
+    "userAddress": "SDU QingDao Campus THT",
+    "userId": 4
+  }
+]

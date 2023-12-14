@@ -5,6 +5,9 @@ import mockRequests from './mockAjax'
 export const reqCategoryList = () => mockRequests({ url: '/typeNav', method: 'get' })
 
 export const reqGetBannerList = () => mockRequests({ url: '/banner', method: 'get' })
+
+export const reqGetAddress = () => mockRequests({ url: '/address', method: 'get' })
+
 export const reqFloorList = () => mockRequests.get('/floor')
 
 export const reqGetSearchInfo = (params) => requests({ url: '/list', method: 'post', data: params })
@@ -27,5 +30,8 @@ export const reqUserLogin = (data) => requests({ url: '/user/passport/login', da
 
 export const reqUserInfo = () => requests({ url: 'user/passport/auth/getUserInfo', method: 'get' })
 
-export const reqLogout = () => requests({ 'url': '/user/passport/logout', method: 'get' })
+export const reqLogout = () => requests({ url: '/user/passport/logout', method: 'get' })
 
+// export const reqAddressInfo = () => requests({ url: '/user/userAddress/auth/findUserAddressList', method: 'get' })
+
+export const reqOrderInfo = () => requests({ url: '/order/auth/trade', method: 'get' })
