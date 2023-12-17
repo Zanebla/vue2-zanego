@@ -105,10 +105,13 @@
       </ul>
     </div>
     <div class="trade">
-      <div class="price">应付金额:　<span>¥5399.00</span></div>
+      <div class="price">Payable Amount:　<span>¥5399.00</span></div>
       <div class="receiveInfo">
-        Sent to:<span>SDU QingDao Campus</span> Consignee:<span>Zane</span>
-        <span>153****4262</span>
+        Sent to -
+        <span>{{ userDefaultAddress.fullAddress }} | </span> Consignee:<span
+          >{{ userDefaultAddress.consignee }} |
+        </span>
+        <span>{{ userDefaultAddress.phoneNum }}</span>
       </div>
     </div>
     <div class="sub clearFix">
@@ -128,11 +131,14 @@ export default {
   computed: {
     ...mapState({
       addressInfo: state => state.trade.address
-    })
+    }),
+    userDefaultAddress () {
+      return this.addressInfo.find(item => item.isDefault == 1)
+    }
   },
   methods: {
     changeDefault (address, addressInfo) {
-      addressInfo.forEach((item) => item.isDefault = 0)
+      addressInfo.forEach(item => item.isDefault = 0)
       address.isDefault = 1
     }
   }
