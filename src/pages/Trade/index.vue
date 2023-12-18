@@ -83,23 +83,23 @@
       </div>
       <div class="line"></div>
       <div class="bill">
-        <h5>发票信息：</h5>
-        <div>普通发票（电子） 个人 明细</div>
-        <h5>使用优惠/抵用</h5>
+        <h5>Invoice Information :</h5>
+        <div>Personal details of ordinary invoice (electronic) :</div>
+        <h5>Use discounts/deductions :</h5>
       </div>
     </div>
     <div class="money clearFix">
       <ul>
         <li>
-          <b><i>1</i>件商品，总商品金额</b>
+          <b><i>1</i> items, total item amount : </b>
           <span>¥5399.00</span>
         </li>
         <li>
-          <b>返现：</b>
+          <b>Redemption : </b>
           <span>0.00</span>
         </li>
         <li>
-          <b>运费：</b>
+          <b>Freight : </b>
           <span>0.00</span>
         </li>
       </ul>
@@ -115,7 +115,7 @@
       </div>
     </div>
     <div class="sub clearFix">
-      <router-link class="subBtn" to="/pay">提交订单</router-link>
+      <router-link class="subBtn" to="/pay">submit the order</router-link>
     </div>
   </div>
 </template>
@@ -130,11 +130,12 @@ export default {
   },
   computed: {
     ...mapState({
-      addressInfo: state => state.trade.address
+      addressInfo: state => state.trade.address,
+      orderInfo: state => state.trade.orderInfo
     }),
     userDefaultAddress () {
-      return this.addressInfo.find(item => item.isDefault == 1)
-    }
+      return this.addressInfo.find(item => item.isDefault == 1) || {}
+    },
   },
   methods: {
     changeDefault (address, addressInfo) {
